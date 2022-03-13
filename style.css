@@ -1,0 +1,421 @@
+/*----- FONTS -----*/
+@font-face {
+    font-family: "Bebas Neue";
+    src: url("fonts/BebasNeue.ttf");
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("fonts/Outfit.ttf");
+}
+/*----------------*/
+
+
+
+*{
+    margin:0; padding: 0; box-sizing: border-box;
+    transition: all 0.13s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+html{
+    scroll-behavior: smooth;
+
+}
+body{
+    font-family: Outfit, monospace;
+    background: rgba(210,210,210,0.4);
+}
+li{
+    cursor: pointer;
+}
+a{
+text-decoration: none;
+color:black;
+}
+button{
+    cursor: pointer;
+    border:none;
+
+}
+#page-header{
+    background-color: rgb(3, 29, 39);
+    height:45px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap:20px;   
+    position: sticky;
+    top:0;
+}
+#page-header__hamburger-icon{
+   background:transparent;
+  margin-left: 20px;
+}
+.hamburger-icon__middle-line{
+ width: 20px;    
+ height: 4px;
+ background:white;
+ display: block;
+}
+#page-header__hamburger-icon::before,#page-header__hamburger-icon::after{
+  content:"";
+  width:20px;
+  display: block;
+  background:white;  
+  height:4px;
+  margin: 7px 0;
+}
+.query-group{
+    display: flex;
+    gap:0;
+}
+.query-group *{
+    display: block;
+    margin:0;
+}
+.query-group__submit-btn{
+    height:30px;
+    padding:0 0.5em;
+    font-family: "Bebas Neue", monospace;
+    font-size: 1.1em;
+    letter-spacing: 0.06em;
+    background:rgb(15, 149, 202);
+    border:none;
+
+}
+#query-input{
+    height: 30px;
+    padding: 0 10px;
+}
+
+.page-header__sections-navs{
+    margin-left: 20px;
+}
+.page-header__sections-navs ul{
+    list-style: none;
+    display: flex;
+    gap: 0.7em;
+    font-size: 1.3em;  
+    font-family:"Bebas Neue", monospace;
+    letter-spacing: 0.06em;
+    width: 100%;
+
+}
+.page-header__sections-navs li a{
+color:white;
+}
+main{
+    width: 90%;
+    max-width: 1500px;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
+}
+main section{
+    box-sizing: border-box;
+    padding: 2.5em 3em;
+}
+#main-header{
+display: grid;
+grid-template-columns: minmax(1px,1290px);
+column-gap: 15px;
+justify-items: center;
+}
+.article-element{
+    color:black;
+    background: white;
+    box-shadow: 0 0 10px 0 gray;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: 
+    "img img img"
+    "title title title"
+    "description description description"
+    ". . source";
+    gap: 30px;
+    border:1px solid rgb(180,180,180);
+    max-width: 1000px;
+    margin-right: 0.4em;
+}
+.article-element img{
+    grid-area: img;
+    width: 100%;
+}
+.article-element__title{
+    grid-area: title;
+    padding: 0 0.2em;
+
+}
+.article-element__description{
+    grid-area: description;
+    margin-bottom: 0.5em;
+    padding: 0 0.2em;
+    
+}
+.article-element__source{
+    grid-area: source;
+    font-family: "Bebas Neue", monospace;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    padding: 0.2em 1em;
+    align-self: end;
+    margin-bottom: 0.5em;
+    background: darkcyan;
+    display: block;
+    color:white;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-right: 0.4em;
+}
+
+.article-element *{
+    width: fit-content;
+    height: fit-content
+}
+
+.section-heading{
+    display: flex;
+    letter-spacing: 0.1em;
+    margin-bottom: 2em;
+    align-items: center;
+    
+}
+.section-heading::before{
+ width: 15px;
+ content: "";
+}
+article.articles-group{
+display: grid;
+grid-template-columns: 1fr;
+row-gap: 7px;
+font-size: 20px;
+}
+.articles-group .article-element__title{
+    margin-top: 1.1em;
+    font-size: 1.1em;
+}
+.articles-group .article-element__source{
+    font-size: 0.9em
+}
+#articles-section{
+   width: 90%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 3em; 
+}
+a.view-articles-btn{
+   width:fit-content;
+   font-size: 1.3rem;
+   display: block;
+   padding: 0.5em 1em;
+   background:transparent;
+   outline: none;
+   border:1px solid black;
+   cursor: pointer;
+   margin: 3em auto;
+   position: relative;
+   
+}
+
+a.view-articles-btn::before{
+  content: "";
+  width: 0;
+  height: calc(100%);
+  display: block;
+  background: rgb(15, 149, 202); 
+  position: absolute;
+  z-index: -1;
+  top:0;
+  left:0;
+  transition: width 0.13s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.page-header__sections-navs{
+    position: absolute;
+    overflow: hidden;
+    top:0;
+    flex-direction: column;
+    max-width: 250px;
+    width: fit-content;
+    height: 100vh;
+    background:red;
+    left:0;
+    margin:0;
+    padding: 4em 0;
+    background: rgb(2, 36, 49);
+    border-right: 3px solid rgb(5, 116, 160);;
+   
+
+}
+.sections-navs__close-btn{
+    background-color: transparent;
+    border:none;
+    padding: 0.3em 1em;
+    margin: 0 0 3em calc(7em);
+    color:white;
+    font-family: inherit;
+    font-size: 1.2em;
+    display: none;
+    
+}
+.page-header__sections-navs ul{
+    flex-direction: column;
+    gap: 20px;
+    width: 0;
+    /* Full Width:
+    width: 250px;
+    */
+    height:100%;
+
+}
+.page-header__sections-navs ul li{
+ padding: 0.3em 0;
+}
+.page-header__sections-navs ul a{
+    color:white;
+    padding: 0.5em 1.4em;
+    
+}
+/*--- Transitions ---*/
+
+#query-input:focus{
+    border: none;
+    outline:rgb(15, 149, 202) 1px solid;
+}
+a.view-articles-btn:hover{
+    color:white;
+    border-color: rgb(15, 149, 202);
+}
+a.view-articles-btn:hover::before{
+   width: 100%;
+}
+
+
+.page-header__sections-navs li:hover{
+    transform: scale(1.2);
+    width: 100%;
+    display: block;
+}
+.page-header__sections-navs li:focus{
+    background: rgb(15, 149, 202);
+}
+
+
+/*-------------------*/
+/*---MEDIA QUERIES---*/
+/*Tablets\*/
+@media screen and (min-width: 700px) {
+   
+
+}
+
+/*Laptops\*/
+@media screen and (min-width: 1024px){
+    .section-heading{
+        justify-content: center;
+        align-items: center;
+        gap: 10%;   
+    }
+    .section-heading::after, .section-heading::before{
+       content: "";
+        height: 2px;
+        width:100%;
+    }
+
+ #main-header{
+     justify-items: start;
+ } 
+ #articles-sections{
+     align-items: flex-start;
+ }
+ #page-header__hamburger-icon{
+     display: none;
+ }    
+
+ .page-header__sections-navs{
+    margin-left: 20px;
+    position: static;
+    background:transparent;
+    border:none;
+    padding:0;
+    overflow: visible;
+    max-width: 100vw;
+    height: 100%;
+}
+.page-header__sections-navs ul{
+    list-style: none;
+    display: flex;
+    gap: 0.7em;
+    font-size: 1.3em;  
+    font-family:"Bebas Neue", monospace;
+    letter-spacing: 0.06em;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+.sections-navs__close-btn{display: none;}
+.page-header__sections-navs ul li{
+    padding: 0;
+   }
+   .page-header__sections-navs ul a{
+    
+     padding:0;
+       
+   }
+
+   .article-element{
+    color:black;
+    background: white;
+    box-shadow: 0 0 10px 0 gray;
+    box-sizing: border-box;
+    
+    display: grid;
+    grid-template-areas: "img title title"
+                         "img description description"
+                         "img . source";
+    column-gap: 10px;
+    border:1px solid rgb(180,180,180);
+    max-width: 1500px
+}
+.article-element img{
+    grid-area: img;
+}
+.article-element__title{
+    grid-area: title;
+    margin-top: 0.5em;
+}
+.article-element__description{
+    grid-area: description;
+    margin-bottom: 0.5em;
+}
+.article-element__source{
+    grid-area: source;
+    font-family: "Bebas Neue", monospace;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    padding: 0.2em 1em;
+    align-self: end;
+    margin-bottom: 0.5em;
+    background: darkcyan;
+    display: block;
+    color:white;
+    letter-spacing: 0.06em;
+    margin-right: 0.4em;
+}
+.article-element__img{
+    height:50px;
+    display: block;
+    
+}
+.article-element *{
+    width: fit-content;
+    height: fit-content
+}
+
+ 
+}
+/*Large Screens\*/
+@media screen and (min-width: 1300px) {
+
+}
+/*-------------------*/

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SCRIPTS -->
+    <script src="react.development.js" defer></script>
+    <script src="react-dom.development.js"defer></script>
+    <script src="index.js" defer></script>
+    <script src="JSX/index.js" defer></script>
+
+    <!--========= -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo.png"/>
+    <link rel="stylesheet" href="style.css"/>
+    <title>EGX | Homepage</title>
+    <description>This is the homepage for EGX news website. Enjoy American news 24/7, sicence, tech, technology, business, trends, trend news, usa, made by Shihap Ali.</description>
+</head>
+<body>
+ <header id="page-header">
+     <button id="page-header__hamburger-icon" onclick="fireSidebar()"><span class="hamburger-icon__middle-line"></span></button>
+     <nav class="page-header__sections-navs">
+       <button class="sections-navs__close-btn" onclick="hideSidebar()">X Close</button>
+       <ul>
+           <li><a href="index.html">Homepage</a></li>
+           <li><a href="pages/covid.html">COVID</a></li> 
+           <li><a href="pages/science.html">Science</a></li> 
+           <li><a href="pages/business.html">Business</a></li> 
+           <li><a href="pages/technology.html">Technology</a></li>        
+       </ul>
+     </nav>
+     <div class="query-group">
+     <input id="query-input" placeholder="Search for A topic..." aria-label="Enter a topic name to search for"/>
+     <button class="query-group__submit-btn">Search</button>
+    </div>
+ </header>
+ <main>
+  <header id="main-header">
+    <h1 class="section-heading" id="trends-section-heading">Trends</h1>
+  <article class="articles-group" id="trends-news-section">
+    <img src="https://c.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"/>
+  </div>
+  </article>
+   <a href="pages/trends.html" role="button" class="view-articles-btn">View More</a> 
+ </header>
+ <article id="articles-section">
+ <section class="main__science-section" aria-label="Science Articles Section" id="science-section">
+  <h2 class="section-heading" id="science-section-heading">Science</h2> 
+  <article class="articles-group" aria-label="articles" id="science-news-section">
+   <img src="https://c.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"/>
+  </article>
+  <a href="pages/science.html" role="button"class="view-articles-btn">View All</a>
+ </section>
+ <section class="main__covid-section" aria-label="COVID Articles Section" id="covid-section">
+    <h2 class="section-heading" id="covid-section-heading" >COVID</h2> 
+    <article class="articles-group" aria-label="articles" id="covid-news-section">
+      <img src="https://c.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"/>
+    </article>
+    <a  href="pages/covid.html" role="button"class="view-articles-btn">View All</a>
+ </section>
+ <section class="main__business-section" aria-label="Business Articles Section" id="business-section">
+    <h2 class="section-heading" id="business-section-heading">Business</h2> 
+    <article class="articles-group" aria-label="articles" id="business-news-section">
+      <img src="https://c.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"/>
+    </article>
+    <a href="pages/business.html" role="button"class="view-articles-btn">View All</a>
+ </section>
+ <section class="main__technology" aria-label="Technology Articles Section" id="technology-section">
+    <h2 class="section-heading" id="technology-section-heading">Technology</h2> 
+    <article class="articles-group" aria-label="articles" id="technology-news-section">
+      <img src="https://c.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"/>
+    </article>
+    <a  href="pages/technology.html" role="button" class="view-articles-btn">View More</a> 
+  </section>
+</article>
+</main>
+</body>
+<script>
+const Sidebar = document.querySelector(".page-header__sections-navs");
+  function fireSidebar(){
+    Sidebar.querySelector(".sections-navs__close-btn").style.display = "block";
+   Sidebar.style.width = "250px";
+  }
+  function hideSidebar(){
+    Sidebar.style.width = "0";
+    Sidebar.querySelector(".sections-navs__close-btn").style.display = "none";
+
+  }
+    
+  </script>
+<noscript>
+    <h1>This page needs JavaScript to run</h1>
+    <a href="index.html" role="button" style="padding: 1em; background: red; color:white; font-size:1.3em; font-family: monospace; margin: 2em auto; display:block;">Reload</a>
+</noscript>
+</html>
