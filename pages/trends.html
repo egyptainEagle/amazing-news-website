@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/logo.png"/>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <!-- React -->
+     <script src="../react.development.js" defer></script>
+     <script src="../react-dom.development.js" defer></script>
+    <!-- Normal Scripts-->
+     <script src="scripts/index.js"></script>
+    <title>EGX | Trend News</title>
+    <description>This is the trend news section for EGX news website. Enjoy American news 24/7, trends, trend news, usa, us made by Shihap Ali.</description>
+</head>
+<body>
+    <header id="page-header">
+        <button id="page-header__hamburger-icon" onclick="fireSidebar()"><span class="hamburger-icon__middle-line"></span></button>
+        <nav class="page-header__sections-navs">
+          <button class="sections-navs__close-btn"  onclick="hideSidebar()">X Close</button>
+          <ul>
+              <li><a href="../index.html">Homepage</a></li>
+              <li><a href="covid.html">COVID</a></li> 
+              <li><a href="science.html">Science</a></li> 
+              <li><a href="business.html">Business</a></li> 
+              <li><a href="technology.html">Technology</a></li>        
+          </ul>
+        </nav>
+        <div class="query-group">
+        <input id="query-input" placeholder="Search for A topic..." aria-label="Enter a topic name to search for"/>
+        <button class="query-group__submit-btn">Search</button>
+       </div>
+    </header>
+    <div class="introductory-image" style='background-image: linear-gradient(to right, rgba(0, 0, 0, 0.897) 5%, rgba(0, 0, 0, 0.596) 100%),url("../../images/pages-backgrounds/trends-image.jpg");'> <h1 class="introductory-image__heading">Trends</h1></div>
+    <main>
+        <article class="articles-group" id="articles-group-id"></article>
+       </main>
+  <script>
+  const Sidebar = document.querySelector(".page-header__sections-navs");
+  function fireSidebar(){
+    Sidebar.querySelector(".sections-navs__close-btn").style.display = "block";
+   Sidebar.style.width = "250px";
+  }
+  function hideSidebar(){
+    Sidebar.style.width = "0";
+    Sidebar.querySelector(".sections-navs__close-btn").style.display = "none";
+
+  }
+       const baseURL = "https://newsapi.org/v2/everything?language=en&apiKey=8e323d1e5d1947b89a97a82faa143063";
+       articlesData = fetchNews(baseURL, "trend");
+       renderNewsComponents(articlesData, "articles-group-id");
+       </script>
+ <!-- Change Heading Before element color: -->
+<script>
+  const heading = document.querySelector(".introductory-image__heading");
+  heading.style.setProperty("--before-color", "yellow");
+ </script>
+</body>
+</html>

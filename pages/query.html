@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/logo.png"/>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <!-- React -->
+     <script src="../react.development.js" defer></script>
+     <script src="../react-dom.development.js" defer></script>
+    <!-- Normal Scripts-->
+     <script src="scripts/index.js"></script>
+    <title>EGX | Search for a topic</title>
+</head>
+<body>
+    <header id="page-header">
+        <button id="page-header__hamburger-icon"><span class="hamburger-icon__middle-line"></span></button>
+        <nav class="page-header__sections-navs">
+          <button class="sections-navs__close-btn">X Close</button>
+          <ul>
+              <li><a href="../index.html">Homepage</a></li>
+              <li><a href="covid.html">COVID</a></li> 
+              <li><a href="science.html">Science</a></li> 
+              <li><a href="business.html">Business</a></li> 
+              <li><a href="technology.html">Technology</a></li>        
+          </ul>
+        </nav>
+        <div class="query-group">
+        <input id="query-input" placeholder="Search for A topic..." aria-label="Enter a topic name to search for"/>
+        <button class="query-group__submit-btn">Search</button>
+       </div>
+    </header>
+
+    <main>
+        <article class="articles-group" id="articles-group-id"></article>
+       </main>
+       <script>
+       const baseURL = "https://newsapi.org/v2/everything?language=en&apiKey=8e323d1e5d1947b89a97a82faa143063";
+       articlesData = fetchNews(baseURL, "business");
+       renderNewsComponents(articlesData, "articles-group-id");
+       </script>
+</body>
+</html>
