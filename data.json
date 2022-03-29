@@ -3,7 +3,7 @@
 "title":"React News Website",
 "liveUrl":"https://egx-news.vercel.app/",
 "background":"https://i.top4top.io/p_22794j4bc1.jpg",
-"description": "This is a React-based News website that uses the Fetch API and a news REST API.\n•Used the Fetch API and a third-party news API to fetch news data\n•Used React along with JSX to list the fetched news data as a list of React components\n•Created separate HTML pages for different types of news.",
+"description": "This is a React-based News website that uses the Fetch API and a news REST API.[*]Used the Fetch API and a third-party news API to fetch news data[*]Used React along with JSX to list the fetched news data as a list of React components[*]Created separate HTML pages for different types of news.",
 "skills": ["CSS3","JS(E7+)", "HTML5", "ReactJS"]
 }
 
