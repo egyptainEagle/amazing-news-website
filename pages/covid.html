@@ -47,8 +47,7 @@
     Sidebar.querySelector(".sections-navs__close-btn").style.display = "none";
 
   }
-const baseURL = "https://newsapi.org/v2/everything?language=en&apiKey=8e323d1e5d1947b89a97a82faa143063";
-articlesData = fetchNews(baseURL, "covid");
+articlesData = fetchNews("covid");
 renderNewsComponents(articlesData, "articles-group-id");
 </script>
 <!-- Change Heading Before element color: -->
