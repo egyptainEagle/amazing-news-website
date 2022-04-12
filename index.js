@@ -1,6 +1,9 @@
 // --------- Constans ---------//
-const homepageBaseURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=8e323d1e5d1947b89a97a82faa143063"; //baseURL = "https://newsapi.org/v2/everything?country=us&apiKey=8e323d1e5d1947b89a97a82faa143063"
-
+  //EDIT HERE:
+const homepageBaseURL = "https://api.newscatcherapi.com/v2/latest_headlines?page_size=1&countries=US";
+const covidBaseURL = "https://api.newscatcherapi.com/v2/search?q=covid";
+  //api-key: 5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ
+//const homepageBaseURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=8e323d1e5d1947b89a97a82faa143063"; //baseURL = "https://newsapi.org/v2/everything?country=us&apiKey=8e323d1e5d1947b89a97a82faa143063"
 const categories = ["trends", "science", "covid", "business", "technology"];
 /*--------- React Components ------------*/
 
@@ -48,7 +51,7 @@ function NewsComponent(props) {
 
 
 function formatTitle(title) {
-  titleTailPattren = /\s+(-)+\s*.{3,}$/;
+  titleTailPattren = /\s+(-)+\s*.{3,}$|\s+(\|)+\s*.{3,}$/;
 
   if (title.match(titleTailPattren)) {
     title = title.replace(titleTailPattren, "");
@@ -59,18 +62,38 @@ function formatTitle(title) {
   return title;
 }
 
-async function fetchNews(URL, category) {
-  const RESTData = await fetch(`${URL}&q=${category == "trends" ? "" : category}`);
+async function fetchNews(category) {
+ let RESTData = null;
+ 
+  switch (category){
+   case "trends":
+    RESTData = await fetch(homepageBaseURL,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+    console.log("trend")
+    break;
+   case "business":
+    RESTData = await fetch(`${homepageBaseURL}&topic=business`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+    console.log("business")
+    break;
+   case "covid":
+    RESTData = await fetch(covidBaseURL,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+     break;
+   case "science":
+    RESTData = await fetch(`${homepageBaseURL}&topic=science`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+     break;
+   case "technology":
+    RESTData = await fetch(`${homepageBaseURL}&topic=tech`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+     break;
+  }
   const JSONData = await RESTData.json();
   const articles = []; // Filter data and retun array of objects, each contain only the useful data about the news:
-
+console.log(JSONData)
   for (articleElement of JSONData.articles) {
     const NewsElement = {};
-    NewsElement.source = articleElement.source.name; //Format title and remove source name from the title:
-
+          //EDIT HERE:
+    NewsElement.source = articleElement["clean_url"].replace(/\..+/,""); //Format title and remove source name from the title:
     NewsElement.title = formatTitle(articleElement.title);
-    NewsElement.description = articleElement.description;
-    NewsElement.img = articleElement.urlToImage;
+    NewsElement.description = articleElement.summary;
+    NewsElement.img = articleElement.media;
     articles.push(NewsElement);
   }
 
@@ -97,11 +120,20 @@ async function renderNewsComponents(newsArray, containerID) {
 }
 
 function init() {
-  for (category of categories) {
+  let index = 0;
+  let intervalID = null;
+
+  //EDIT HERE:
+    // The Timeout because the API doesn't allow me to send more than one request per second
+   intervalID =  setInterval(()=>{
+    if(index  == categories.length -1){ clearInterval(intervalID)}
+    const category = categories[index];
     let articles = null;
-    articles = fetchNews(homepageBaseURL, category == "technology" ? "tech" : category);
+    articles = fetchNews(category);
     renderNewsComponents(articles, `${category}-news-section`);
-  }
+    index ++;   
+  },1000)
+  
 }
 
 init();
