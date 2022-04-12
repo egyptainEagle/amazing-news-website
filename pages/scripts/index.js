@@ -1,4 +1,5 @@
-
+const homepageBaseURL = "https://api.newscatcherapi.com/v2/latest_headlines?page_size=30&countries=US";
+const covidBaseURL = "https://api.newscatcherapi.com/v2/search?q=covid";
 /*--------- React Components ------------*/
 
 /*--------- React Components ------------*/
@@ -55,7 +56,7 @@ function formatTitle(title) {
 
   return title;
 }
-
+/*
 async function fetchNews(URL, category) {
   const RESTData = await fetch(`${URL}${(category.length == 0)?"":"&q="+category}`);
   const JSONData = await RESTData.json();
@@ -74,6 +75,46 @@ async function fetchNews(URL, category) {
 
   return articles;
 }
+*/
+
+async function fetchNews(category) {
+  let RESTData = null;
+  
+   switch (category){
+    case "trends":
+     RESTData = await fetch(homepageBaseURL,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+     console.log("trend")
+     break;
+    case "business":
+     RESTData = await fetch(`${homepageBaseURL}&topic=business`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+     console.log("business")
+     break;
+    case "covid":
+     RESTData = await fetch(covidBaseURL,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+      break;
+    case "science":
+     RESTData = await fetch(`${homepageBaseURL}&topic=science`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+      break;
+    case "technology":
+     RESTData = await fetch(`${homepageBaseURL}&topic=tech`,{method: "GET", headers: {"x-api-key": "5HrxKqHabDyk49YRk8BwxDD6OeDTDjsUNjpM1yDxeLQ"}});
+      break;
+   }
+   const JSONData = await RESTData.json();
+   const articles = []; // Filter data and retun array of objects, each contain only the useful data about the news:
+ console.log(JSONData)
+   for (articleElement of JSONData.articles) {
+     const NewsElement = {};
+           //EDIT HERE:
+     NewsElement.source = articleElement["clean_url"].replace(/\..+/,""); //Format title and remove source name from the title:
+     NewsElement.title = formatTitle(articleElement.title);
+     NewsElement.description = articleElement.summary;
+     NewsElement.img = articleElement.media;
+     articles.push(NewsElement);
+   }
+ 
+   return articles;
+ }
+
 
 async function renderNewsComponents(newsArray, containerID) {
   const NewsArray = await newsArray;
